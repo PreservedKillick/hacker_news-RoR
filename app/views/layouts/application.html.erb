@@ -9,6 +9,19 @@
 <body>
 
 <div class="container-fluid">
+
+<% if flash[:notice] != nil %>
+<div class="alert alert-success">
+<%= flash[:notice] %>
+</div>
+<% end %>
+
+<% if @error_messages != nil %>
+<div class="alert alert-danger">
+<%= flash[:alert] %>
+</div>
+<% end %>
+
 <%= yield %>
 </div>
 

@@ -30,9 +30,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(params[:user])
       flash[:notice] = "User updated."
-      redirect_to user_path
+      redirect_to user_path(@user)
     else
-      render edit_user_path
+      @error_messages = []
+      @user.errors.full_messages.each { |message| @error_messages << "Error: #{message}"}
+      @error_messages.each { |error| flash[:alert] = "#{error}" }
+      render 'edit'
     end
   end
 
