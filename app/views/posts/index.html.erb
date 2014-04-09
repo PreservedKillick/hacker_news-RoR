@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1>All Posts:</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+      <% @posts.each do |post| %>
+      <div class="well well-sm">
+        <ul style="list-style:none">
+        <li class="inline no-decoration"><%= link_to "#{post.title}", post_path(post)%> <span class="label purple"><%= post.user.name %></span></li>
+        <p><%= post.content %></p>
+        </ul>
+        <%= button_to 'Upvote', post_path(post, post => {votes: (post.votes + 1)}), :method => :patch, class: 'btn btn-primary' %>
+
+      </div>
+      <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12 inline">
+    <%= link_to "Add New Post", new_post_path, class: 'btn btn-success' %>
+  </div>
+</div>
+
+

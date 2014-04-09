@@ -1,0 +1,18 @@
+
+  <div class="col-lg-2">
+    <%= form_for(@post) do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_field :content, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :user %>
+        <%= collection_select :post, :user_id, User.all, :id, :name, {prompt: true}, {:class => 'form-control'} %>
+      </div>
+      <%= f.submit(:class => 'btn btn-success') %>
+    <% end %>
+  </div>
